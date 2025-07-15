@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Great Lakes Climate Mystery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* Dark background */
+            color: #f3f4f6;
+        }
+        .card {
+            background-color: #1f2937;
+            border: 1px solid #374151;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        .chart-container {
+            position: relative;
+            height: 350px;
+            width: 100%;
+        }
+        .term {
+            cursor: pointer;
+            text-decoration: underline;
+            text-decoration-style: dashed;
+            color: #60a5fa;
+        }
+        .definition {
+            display: none;
+            background-color: #374151;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="container mx-auto max-w-6xl">
+        <header class="text-center my-12">
+            <h1 class="text-4xl md:text-5xl font-black text-white">A Great Lakes Mystery</h1>
+            <p class="mt-4 text-xl text-gray-400">Vanishing Ice and a Struggling Fishery</p>
+        </header>
+
+        <section class="card">
+            <h2 class="text-3xl font-bold mb-4 text-sky-300 text-center">An Ecosystem Under Pressure</h2>
+            <p class="text-lg text-gray-300 text-center max-w-4xl mx-auto mb-8">
+                The Great Lakes are an economic and ecological powerhouse, supporting a <a href="https://www.glfc.org/" target="_blank" rel="noopener noreferrer" class="text-sky-400 hover:underline">$7 billion fishing industry</a>. But a silent, steady change is putting it all at risk. Average winter ice cover has been declining for decades across all five lakes—a clear sign of a warming climate. This abiotic shift has a cascade of effects on the ecosystem.
+            </p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="chart-container">
+                    <canvas id="iceCoverChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="perchRecruitmentChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section class="card relative">
+            <h2 class="text-3xl font-bold mb-6 text-center text-sky-300">The Biological Puzzle</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center mb-8">
+                <div class="md:col-span-1">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Yellow_perch_fish_perca_flavescens.jpg/512px-Yellow_perch_fish_perca_flavescens.jpg" 
+                         alt="A detailed photo of a Yellow Perch" 
+                         class="w-full h-auto rounded-lg shadow-md"
+                         onerror="this.onerror=null;this.src='https://placehold.co/400x250/374151/f3f4f6?text=Perca+flavescens';">
+                </div>
+                <div class="md:col-span-2">
+                    <p class="text-gray-300">
+                        Scientists noticed that as the ice vanished, populations of key native fish, like Yellow Perch <em class="text-gray-400">(Perca flavescens)</em>, began to struggle. They saw a link, but couldn't be sure what was causing it. To solve this puzzle, you need to understand a few key scientific concepts. <strong class="text-white">Click each term below to reveal its definition.</strong>
+                    </p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div>
+                    <h3 class="text-xl font-bold term" onclick="toggleDef('def1')">Phenology</h3>
+                    <p id="def1" class="definition text-left">The study of the timing of natural events in the lives of plants and animals, like when birds migrate, flowers bloom, or fish spawn. Climate change can disrupt this timing.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold term" onclick="toggleDef('def2')">Ectotherm</h3>
+                    <p id="def2" class="definition text-left">An animal that relies on the external environment to regulate its body temperature (i.e., "cold-blooded"). Fish are ectotherms, so changes in water temperature have a huge impact on their bodies.</p>
+                </div>
+                 <div>
+                    <h3 class="text-xl font-bold term" onclick="toggleDef('def3')">Correlation vs. Causation</h3>
+                    <p id="def3" class="definition text-left">Just because two things happen at the same time (correlation) doesn't mean one caused the other (causation). Scientists need experiments to <strong class="text-white">strongly support</strong> causation.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="card text-center bg-sky-900/50">
+             <h2 class="text-3xl font-bold mb-4 text-white">Your Mission</h2>
+             <p class="text-lg text-gray-200">The data shows a <strong class="text-sky-300">correlation</strong>: less ice is linked to fewer fish. Your job is to conduct a simulated experiment to find the <strong class="text-sky-300">causation</strong>. You will analyze egg samples from perch that experienced different winters to uncover how phenology and an ectotherm's biology connect to solve this mystery.</p>
+        </section>
+
+        <footer class="text-center py-8 text-gray-500 text-sm">
+            <p>This lab activity is based on the findings and data presented in the following scientific paper:</p>
+            <p class="mt-2 font-mono">Farmer, T. M. et al. Short winters threaten temperate fish populations. *Nat. Commun.* 6:7724 <a href="https://www.nature.com/articles/ncomms8724" target="_blank" rel="noopener noreferrer" class="text-sky-400 hover:underline">doi: 10.1038/ncomms8724</a> (2015).</p>
+        </footer>
+    </div>
+
+<script>
+    function toggleDef(id) {
+        const el = document.getElementById(id);
+        el.style.display = el.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // --- Chart 1: Ice Cover Decline ---
+    // Data is based on historical decadal averages calculated from NOAA GLERL yearly data (1973-2023).
+    const iceCtx = document.getElementById('iceCoverChart').getContext('2d');
+    new Chart(iceCtx, {
+        type: 'line',
+        data: {
+            labels: ['1970s', '1980s', '1990s', '2000s', '2010s'],
+            datasets: [
+                {
+                    label: 'Overall Trend',
+                    data: [54.8, 51.5, 43.5, 36.9, 34.6],
+                    borderColor: '#ffffff',
+                    borderWidth: 4,
+                    tension: 0.3
+                },
+                {
+                    label: 'Superior',
+                    data: [68.1, 65.2, 58.4, 49.3, 44.1],
+                    borderColor: '#f87171', // Red
+                    fill: false,
+                    tension: 0.3,
+                    borderDash: [5, 5]
+                },
+                {
+                    label: 'Michigan',
+                    data: [42.3, 39.8, 32.1, 28.5, 25.0],
+                    borderColor: '#fbbf24', // Amber
+                    fill: false,
+                    tension: 0.3,
+                    borderDash: [5, 5]
+                },
+                {
+                    label: 'Huron',
+                    data: [62.5, 59.1, 51.7, 43.8, 40.2],
+                    borderColor: '#34d399', // Emerald
+                    fill: false,
+                    tension: 0.3,
+                    borderDash: [5, 5]
+                },
+                {
+                    label: 'Erie',
+                    data: [68.9, 61.3, 50.2, 38.7, 36.1],
+                    borderColor: '#a78bfa', // Violet
+                    fill: false,
+                    tension: 0.3,
+                    borderDash: [5, 5]
+                },
+                {
+                    label: 'Ontario',
+                    data: [22.1, 19.5, 16.4, 13.1, 12.8],
+                    borderColor: '#60a5fa', // Blue
+                    fill: false,
+                    tension: 0.3,
+                    borderDash: [5, 5]
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: { 
+                    beginAtZero: true,
+                    max: 100,
+                    title: { display: true, text: 'Annual Average Ice Concentration (%)', color: '#d1d5db'},
+                    ticks: { color: '#9ca3af' },
+                    grid: { color: '#374151' }
+                },
+                x: { 
+                    ticks: { color: '#9ca3af' },
+                    grid: { color: '#374151' }
+                }
+            },
+            plugins: {
+                legend: { 
+                    position: 'bottom',
+                    labels: {
+                        color: '#d1d5db',
+                        boxWidth: 20
+                    }
+                },
+                title: {
+                    display: true,
+                    text: 'Decline in Great Lakes Winter Ice Cover',
+                    color: '#f3f4f6',
+                    font: { size: 16 }
+                }
+            }
+        }
+    });
+
+    // --- Chart 2: Perch Recruitment vs. Ice Cover ---
+    // Data points are digitized from Farmer et al. (2015), Nature Communications, Figure 1b.
+    const perchCtx = document.getElementById('perchRecruitmentChart').getContext('2d');
+    new Chart(perchCtx, {
+        type: 'scatter',
+        data: {
+            datasets: [{
+                label: 'Juvenile Abundance',
+                data: [
+                    {x: 72, y: 85}, {x: 93, y: 78}, {x: 68, y: 75}, {x: 38, y: 72}, {x: 75, y: 60},
+                    {x: 48, y: 58}, {x: 55, y: 42}, {x: 5, y: 40}, {x: 88, y: 38}, {x: 52, y: 35},
+                    {x: 45, y: 25}, {x: 60, y: 22}, {x: 42, y: 21}, {x: 2, y: 18}, {x: 82, y: 15},
+                    {x: 58, y: 12}, {x: 48, y: 11}, {x: 40, y: 10}, {x: 98, y: 8}, {x: 25, y: 5},
+                    {x: 10, y: 2}
+                ],
+                backgroundColor: '#60a5fa',
+                pointRadius: 5,
+                pointHoverRadius: 8,
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    type: 'linear',
+                    position: 'bottom',
+                    title: { display: true, text: 'Winter Ice Cover (%)', color: '#d1d5db' },
+                    ticks: { color: '#9ca3af' },
+                    grid: { color: '#374151' }
+                },
+                y: {
+                    title: { display: true, text: 'Fall Juvenile Abundance (CPUE)', color: '#d1d5db' },
+                    ticks: { color: '#9ca3af' },
+                    grid: { color: '#374151' }
+                }
+            },
+            plugins: {
+                legend: { display: false },
+                title: {
+                    display: true,
+                    text: 'Lake Erie Yellow Perch Recruitment vs. Ice Cover',
+                    color: '#f3f4f6',
+                    font: { size: 16 }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return ` Ice: ${context.parsed.x}%, CPUE: ${context.parsed.y}`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>
